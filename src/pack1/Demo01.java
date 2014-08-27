@@ -1,8 +1,8 @@
-package testpack;
+package pack1;
 
-public class Test01 {
+public class Demo01 {
 	
-	private void testMethod1() {
+	private void demoMethod1() {
 		int foo = 5;
 		int bar = 10;
 		
@@ -11,7 +11,7 @@ public class Test01 {
 	}
 
 	public static void main(String[] args){
-		Test01 testobj = new Test01();
-		testobj.testMethod1();
+		Demo01 demo = new Demo01();
+		demo.demoMethod1();
 	}
 }
