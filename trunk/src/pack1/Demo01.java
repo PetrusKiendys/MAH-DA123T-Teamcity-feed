@@ -19,9 +19,6 @@ public class Demo01 {
 		Demo01 demo01 = new Demo01();
 		demo01.run();
 		// new change...
-		// another change...
-		// yet another change...
-		// and yet another change..
 		
 		Demo02 demo02 = new Demo02();
 		demo02.run();

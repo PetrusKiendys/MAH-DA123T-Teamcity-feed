@@ -11,7 +11,4 @@ public class Demo02 {
 		System.out.println("Demo02 isn't doing anything..");
 	}
 	
-//	public static void main(String[] args){
-//		System.out.println("evil main");
-//	}
 }
