@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<!--	Author:			Petrus K.
+			Description:	An ant build script based on an auto-generated script by Eclipse 4.4.0
+			More info:		http://ant.apache.org/manual/using.html
+	-->
+
+	<!-- project attributes -->
+	<project basedir="." default="build" name="ci-research-teamcity-test-project">
+		<description>
+			simple ant build script for demonstrational purposes
+		</description>
+		
+	<!-- properties -->
+	<property name="src" location="src"/>
+	<property name="bin" location="bin"/>
+
+	<!-- targets -->
+	<target name="init" description="initializes file and folder structures before compilation">
+		<mkdir dir="bin"/>
+			<copy includeemptydirs="false" todir="bin">
+				<fileset dir="src">
+					<exclude name="**/*.java"/>
+				</fileset>
+			</copy>
+	</target>
+	
+	<target name="build" depends="init" description="compile the source">
+		<javac srcdir="${src}" destdir="${bin}" includeantruntime="false"/>
+	</target>
+    
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+
+    <target name="run">
+        <java classname="pack1.Demo01" failonerror="true" fork="yes">
+        	<classpath refid="ci-research-teamcity-test-project.classpath"/>
+        </java>
+    </target>
+
+	</project>
