@@ -20,6 +20,7 @@
     </path>
 
 	<!-- targets -->
+	<!-- TARGET init: initializes file and folder structures before compilation -->
 	<target name="init" description="initializes file and folder structures before compilation">
 		<mkdir dir="bin"/>
 			<copy includeemptydirs="false" todir="bin">
@@ -30,17 +31,20 @@
 		<echo message="init completed"></echo>
 	</target>
 	
-	<target name="build" depends="init" description="compile the source">
+	<!-- TARGET build: compiles the source -->
+	<target name="build" depends="init" description="compiles the source">
 		<javac srcdir="${src}" destdir="${bin}" includeantruntime="false"/>
 		<echo message="build completed"></echo>
 	</target>
     
-    <target name="clean" description="clean the compiled files">
+	<!-- TARGET clean: cleans the compiled files -->
+    <target name="clean" description="cleans the compiled files">
         <delete dir="bin"/>
     	<echo message="clean completed"></echo>
     </target>
 
-    <target name="run" depends="build" description="run the demo project">
+	<!-- TARGET run: runs the demo project -->
+    <target name="run" depends="build" description="runs the demo project">
         <java classname="pack1.Demo01" failonerror="true" fork="yes">
         	<classpath refid="classpath"/>
         </java>
