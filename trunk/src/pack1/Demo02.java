@@ -1,3 +1,6 @@
+/**
+ * 	@author Petrus K.
+ */
 package pack1;
 
 public class Demo02 {
