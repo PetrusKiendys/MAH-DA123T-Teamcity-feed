@@ -33,7 +33,7 @@
 	
 	<!-- TARGET build: compiles the source -->
 	<target name="build" depends="init" description="compiles the source">
-		<javac srcdir="${src}" destdir="${bin}" includeantruntime="false"/>
+		<javac srcdir="${src}" destdir="${bin}" includeantruntime="false" compiler="classic"/>
 		<echo message="build completed"></echo>
 	</target>
     
