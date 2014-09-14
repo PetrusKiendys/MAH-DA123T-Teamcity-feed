@@ -1,27 +1,18 @@
 /**
  * 	@author Petrus K.
  */
-package pack1;
+package packdemo;
 
 public class Demo01 {
 	
 	
 /**	---Demo methods---	**/
-	private void demoMethod1() {
-		int foo = 5;
-		int bar = 10;
-		
-		int res = foo+bar;
-		System.out.println("res: "+res);
+	public String demoStringConcatenate(String str1, String str2) {
+		return str1 + str2; 
 	}
 	
-	public int demoMethod2() {
-		int foo = 10;
-		int bar = 20;
-		int res = foo+bar;
-		System.out.println("res: "+res);
-		
-		return res;
+	public int demoCalcSum(int int1, int int2) {	
+		return int1+int2;
 	}
 
 	
@@ -29,8 +20,9 @@ public class Demo01 {
 /** ---run method---	**/
 	public void run() {
 		System.out.println("--running Demo01--");
-		demoMethod1();
-		demoMethod2();
+		System.out.println("demoStringConc:\t"+demoStringConcatenate("hello", "world"));
+		System.out.println("demoCalcSum:\t"+demoCalcSum(5, 10));
+		System.out.println();
 	}
 
 	

@@ -1,54 +1,81 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-	<!--	Author:			Petrus K.
+<!--	Author:			Petrus K.
 			Description:	A custom ant build script based on an auto-generated script by Eclipse 4.4.0
 			More info:		http://ant.apache.org/manual/using.html
 	-->
 
-	<!-- project attributes -->
-	<project basedir="." default="build" name="ci-research-teamcity-test-project">
-		<description>
+<!-- project attributes -->
+<project basedir="." default="build" name="ci-research-teamcity-test-project">
+	<description>
 			simple ant build script for demonstrational purposes
 		</description>
-		
+
 	<!-- properties -->
-	<property name="src" location="src"/>
-	<property name="bin" location="bin"/>
-		
+	<property name="src.dir" location="src"/>
+	<property name="bin.dir" location="bin"/>
+	<property name="test.dir" location="test"/>
+	<property name="test.report.dir" location="testreport"/>
+	<property name="lib.dir" location="lib"/>
+
 	<!-- paths -->
 	<path id="classpath">
-        <pathelement location="bin"/>
-    </path>
+		<pathelement location="lib/junit-4.11.jar"/>
+		<pathelement location="lib/hamcrest-core-1.3.jar"/>
+		<pathelement location="${bin.dir}"/>
+	</path>
 
 	<!-- targets -->
 	<!-- TARGET init: initializes file and folder structures before compilation -->
 	<target name="init" description="initializes file and folder structures before compilation">
-		<mkdir dir="bin"/>
-			<copy includeemptydirs="false" todir="bin">
-				<fileset dir="src">
-					<exclude name="**/*.java"/>
-				</fileset>
-			</copy>
-		<echo message="init completed"></echo>
+		<mkdir dir="${bin.dir}"/>
+		<mkdir dir="${test.report.dir}"/>
+
+		<echo message="init completed"/>
 	</target>
-	
+
 	<!-- TARGET build: compiles the source -->
 	<target name="build" depends="init" description="compiles the source">
-		<javac srcdir="${src}" destdir="${bin}" includeantruntime="false" compiler="modern"/>
-		<echo message="build completed"></echo>
+		<javac srcdir="${src.dir}" destdir="${bin.dir}" includeantruntime="false" compiler="modern">
+			<classpath refid="classpath"/>
+		</javac>
+		<javac srcdir="${test.dir}" destdir="${bin.dir}" includeantruntime="false" compiler="modern">
+			<classpath refid="classpath"/>
+		</javac>
+
+		<echo message="build completed"/>
 	</target>
-    
+
 	<!-- TARGET clean: cleans the compiled files -->
-    <target name="clean" description="cleans the compiled files">
-        <delete dir="bin"/>
-    	<echo message="clean completed"></echo>
-    </target>
+	<target name="clean" description="cleans the compiled files">
+		<delete dir="${bin.dir}"/>
+		<delete dir="${test.report.dir}"/>
+
+		<echo message="clean completed"/>
+	</target>
 
 	<!-- TARGET run: runs the demo project -->
-    <target name="run" depends="build" description="runs the demo project">
-        <java classname="pack1.Demo01" failonerror="true" fork="yes">
-        	<classpath refid="classpath"/>
-        </java>
-    	<echo message="run completed"></echo>
-    </target>
+	<target name="run" depends="build" description="runs the demo project">
+		<java classname="packdemo.Demo01" failonerror="true" fork="yes">
+			<classpath refid="classpath"/>
+		</java>
 
-	</project>
+		<echo message="run completed"/>
+	</target>
+
+	<!-- TARGET test: runs JUnit tests -->
+	<target name="test" depends="build">
+		<junit printsummary="withOutAndErr" fork="true" haltonfailure="yes">
+			<classpath refid="classpath"/>
+			<classpath>
+				<pathelement location="${bin.dir}" />
+			</classpath>
+			<formatter type="xml"/>
+			<batchtest todir="${test.report.dir}">
+				<fileset dir="${test.dir}">
+					<include name="**/*Test*.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+</project>
