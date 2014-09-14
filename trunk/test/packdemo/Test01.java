@@ -43,7 +43,7 @@ public class Test01 {
 	@Test
 	public void testCalcSum() {
 		assertEquals("something is wrong with Demo01.demoCalcSum",
-				30, d1.demoCalcSum(11, 20));
+				30, d1.demoCalcSum(10, 20));
 	}
 	
 	
