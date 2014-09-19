@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--	Author:			Petrus K.
-			Description:	A custom ant build script based on an auto-generated script by Eclipse 4.4.0
-			More info:		http://ant.apache.org/manual/using.html
-	-->
+		Description:	A custom ant build script based on an auto-generated script by Eclipse 4.4.0
+		More info:		http://ant.apache.org/manual/using.html
+-->
 
 <!-- project attributes -->
 <project basedir="." default="build" name="ci-research-teamcity-test-project">
